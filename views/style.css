@@ -1,0 +1,86 @@
+:root {
+    --primary-dark: #151522;
+    --secondary-dark: #232438;
+    --primary-text: white;
+    --secondary-text: #8A8B9F;
+    --blue: #3E7BFA;
+    --border: #636473;
+}
+
+/* Global Styling */
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background: var(--primary-dark);
+    height: 100%;
+}
+
+h1 {
+    font-size: 100px;
+}
+.blue-underline{
+    text-decoration: underline;
+    text-decoration-color: var(--blue);
+}
+.x-large {
+    font-size: 100px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.primary-text {
+    color: var(--primary-text);
+}
+
+.secondary-text {
+    color: var(--secondary-text);
+}
+.blue{
+    color: var(--blue);
+}
+
+/* Landing styles */
+.landing-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+.text-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.landing-buttons {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userTypeButton {
+    color: var(--primary-text);
+    background: var(--secondary-dark);
+    height: 150px;
+    width: 300px;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    transition: all 0.2s ease-in-out;
+}
+
+.userTypeButton:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.welcome{
+    margin-bottom: 10px;
+}
+
