@@ -1,18 +1,19 @@
-<html>
+<?php
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Club</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<form action="" method="POST">
-    <label>Username</label>
-    <input id="username" value="" name='username' type="text" required>
-    <br>
-    <label>Password</label>
-    <input id="password" value="" name="password" type="password" required>
-    <br>
-    <button type="submit">Login</button>
-    <button type="reset">Cancel</button>
-</form>
+<h1>login page</h1>
+
+
+<script src="app.js"></script>
 </body>
 </html>

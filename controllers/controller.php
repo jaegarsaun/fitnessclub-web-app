@@ -18,7 +18,7 @@ class Controller {
             } else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'trainer') {
                 include 'views/trainer/home.php';
             } else {
-                include 'views/login.php';
+                include 'views/landing.php';
             }
 
         }else {
