@@ -14,6 +14,6 @@
 <h1>login page</h1>
 
 
-<script src="app.js"></script>
+
 </body>
 </html>

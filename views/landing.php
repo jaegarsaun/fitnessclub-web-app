@@ -1,20 +1,7 @@
 <?php
-session_start();
-$aResult = array();
 
-// Set session variable userType
-if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-    // Parse the JSON data from the request body
-    $putData = file_get_contents('php://input');
-    $requestData = json_decode($putData, true);
-
-    if (isset($requestData['usertype'])) {
-        $_SESSION['usertype'] = $requestData['usertype'];
-    }
-}
-
-echo json_encode($aResult);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -50,25 +37,35 @@ echo json_encode($aResult);
     buttons.forEach(function(button, index) {
         button.addEventListener('click', (event) => {
 
-            jQuery.ajax({
-                type: "PUT",
-                url: '<?php echo $_SERVER["PHP_SELF"]; ?>',
-                dataType: 'json',
-                data: {usertype: button.id},
+            // URL for the PUT request
+            const url = 'http://localhost:63342/inet2005-finalproject-jaegarsaun/views/setSession.php';
+            const buttonId = button.id
+            // Data to be sent in the request body
+            const data = {
+                usertype: buttonId
+            };
 
-                success: function (obj, textstatus) {
-                    if( !('error' in obj) ) {
-                        data = obj.result;
-                        window.location.href = 'login.php'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                    else {
-                        alert('Error, please try again.')
-                    }
-                }
-            });
-
-
-
+                    return response.json(); // Assuming the response is in JSON format
+                })
+                .then(data => {
+                    // Handle the response data here
+                    console.log(data);
+                    window.location.href='login.php'
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
 
         })
     })
