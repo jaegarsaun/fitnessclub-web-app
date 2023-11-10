@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Club</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -38,7 +38,7 @@
         button.addEventListener('click', (event) => {
 
             // URL for the PUT request
-            const url = 'http://localhost:63342/inet2005-finalproject-jaegarsaun/views/setSession.php';
+            const url = 'http://localhost:63342/inet2005-finalproject-jaegarsaun/setSession.php';
             const buttonId = button.id
             // Data to be sent in the request body
             const data = {
