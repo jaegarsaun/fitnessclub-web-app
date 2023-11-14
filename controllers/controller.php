@@ -1,4 +1,5 @@
 <?php
+session_start(); // Add this line
 require_once('models/model.php');
 class Controller {
     public $model;
@@ -18,11 +19,11 @@ class Controller {
             } else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'trainer') {
                 include 'views/trainer/home.php';
             } else {
-                include 'views/landing.php';
+                include 'views/login.php';
             }
 
         }else {
-            include 'views/landing.php';
+            include 'views/login.php';
         }
     }
 }
