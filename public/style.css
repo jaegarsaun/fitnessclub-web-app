@@ -1,9 +1,10 @@
 :root {
-    --primary-dark: #151522;
-    --secondary-dark: #232438;
+    --primary-dark: #010516;
+    --secondary-dark: #1B1A36;
+    --third-dark: #151E40;
     --primary-text: white;
     --secondary-text: #8A8B9F;
-    --blue: #3E7BFA;
+    --blue: #6E87F7;
     --border: #636473;
 }
 
@@ -13,10 +14,14 @@
     box-sizing: border-box;
     font-family: Arial;
 }
-
+html{
+    height: 100%;
+    margin: 0;
+}
 body {
     background: var(--primary-dark);
     height: 100%;
+    margin: 0;
 }
 
 h1 {
@@ -25,6 +30,9 @@ h1 {
 .blue-underline{
     text-decoration: underline;
     text-decoration-color: var(--blue);
+}
+.blue-border{
+    border: 1px solid var(--blue);
 }
 .x-large {
     font-size: 100px;
@@ -84,10 +92,10 @@ h1 {
 
 @keyframes glow {
     0% {
-        box-shadow: 0 0 3px #3E7BFA, 0 0 7px #3E7BFA;
+        box-shadow: 0 0 3px #6E87F7, 0 0 7px #6E87F7;
     }
     100% {
-        box-shadow: 0 0 10px #3E7BFA, 0 0 10px #3E7BFA;
+        box-shadow: 0 0 10px #6E87F7, 0 0 10px #6E87F7;
     }
 }
 
@@ -95,4 +103,141 @@ h1 {
 .welcome{
     margin-bottom: 10px;
 }
+.spacer{
+    height: 5vh;
+}
 
+
+/*Login page*/
+
+.login-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6E87F7;
+}
+
+.login-container {
+    display: flex;
+    height: 70%;
+    width: 80%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.login-box {
+    width: 50%;
+    background: #010516; /* Adjusted the color to a dark navy blue */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: #fff;
+}
+
+.cta-box {
+    width: 50%;
+    background: #151E40; /* Adjusted the color to a slightly lighter navy blue */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.login-input {
+    width: 100%;
+    height: 2.5rem;
+    padding-left: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1B1A36; /* Adjusted color */
+    color: #fff;
+}
+.login-input:-webkit-autofill{
+    background: #1B1A36;
+
+}
+.login-inout:-webkit-autofill:focus{
+    outline: none;
+    border: 1px solid var(--blue);
+}
+.login-form:focus{
+    outline: none;
+    border: 1px solid var(--blue);
+}
+.login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+}
+
+.login-btn {
+    height: 2.5rem;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #6E87F7; /* Adjusted color */
+    color: #fff;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    width: 100%;
+    margin-bottom: 20px;
+    color: #b8c2cc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox-container label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input {
+    margin-right: 5px;
+}
+
+.link {
+    color: #b8c2cc; /* Lighter text color for the links */
+    text-decoration: none;
+    width: 80%;
+    text-align: right;
+    display: block;
+}
+.center{
+    text-align: center;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Style adjustments for the CTA box */
+.cta-box p {
+    margin-top: 10px;
+    color: #b8c2cc;
+    font-size: 0.9em;
+}
+
+@media (max-width: 800px) {
+    .login-container {
+        flex-direction: column;
+    }
+    .login-box, .cta-box {
+        width: 100%;
+    }
+}

@@ -61,7 +61,7 @@
                 .then(data => {
                     // Handle the response data here
                     console.log(data);
-                    window.location.href='login.php'
+                    window.location.href='http://localhost:63342/inet2005-finalproject-jaegarsaun/views/login.php'
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
