@@ -263,7 +263,9 @@ h2 {
     margin: 20px auto;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.admin-container h2{
+    color: var(--primary-text);
+}
 .admin-form {
     background: var(--primary-dark);
     padding: 15px;
@@ -275,14 +277,16 @@ h2 {
     color: var(--primary-text);
     margin-bottom: 10px;
 }
-h2 {
-    color: var(--primary-text);
-    margin-bottom: 10px;
-}
 
-.admin-form .login-input {
-    margin-bottom: 10px;
-    color: var(--primary-text);
+.admin-form .login-input, .admin-form select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Some padding */
+    margin-bottom: 10px; /* Margin bottom like other inputs */
+    border: none;
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Box sizing to make sure padding doesn't affect width */
+    color: var(--primary-text); /* Text color */
+    background-color: var(--secondary-dark); /* Background color */
 }
 
 .admin-form .login-btn {
@@ -303,6 +307,9 @@ h2 {
 
     color: var(--primary-text); /* Use the primary text color from login page */
     width: 100%;
+    background: var(--primary-dark);
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .users-table th, .users-table td {

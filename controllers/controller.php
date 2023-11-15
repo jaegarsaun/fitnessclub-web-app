@@ -1,5 +1,5 @@
 <?php
-session_start(); // Add this line
+
 require_once('models/model.php');
 class Controller {
     public $model;

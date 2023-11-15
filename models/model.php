@@ -17,7 +17,7 @@ class Model{
             if ($result->num_rows > 0) { // Successful login
                 // set user credentials
                 $row = $result->fetch_assoc();
-                $user_id = $row['user_id'];
+                $user_id = $row['userid'];
                 $role = $row['role'];
                 // Put user credentials in session variables
                 $_SESSION['user_id'] = $user_id;
