@@ -14,7 +14,7 @@
 
     <div class="login-container">
         <div class="login-box">
-            <h2>Sign in to <span class="blue-underline">Account</span></h2>
+            <h2>Sign in to your <span class="blue-underline">Account</span></h2>
             <form class="login-form" action="" method="POST">
                 <input type="text" placeholder="Username" class="login-input" name="username">
                 <input type="password" placeholder="Password" class="login-input" name="password">

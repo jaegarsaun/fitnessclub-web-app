@@ -2,6 +2,7 @@
     --primary-dark: #010516;
     --secondary-dark: #1B1A36;
     --third-dark: #151E40;
+    --quadra-dark: #272f57;
     --primary-text: white;
     --secondary-text: #8A8B9F;
     --blue: #6E87F7;
@@ -18,6 +19,12 @@ html{
     height: 100%;
     margin: 0;
 }
+.centered-body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 body {
     background: var(--primary-dark);
     height: 100%;
@@ -28,6 +35,7 @@ h1 {
     font-size: 100px;
 }
 .blue-underline{
+    text-decoration-style: wavy;
     text-decoration: underline;
     text-decoration-color: var(--blue);
 }
@@ -166,7 +174,7 @@ h2 {
     background: #1B1A36;
 
 }
-.login-inout:-webkit-autofill:focus{
+.login-input:-webkit-autofill:focus{
     outline: none;
     border: 1px solid var(--blue);
 }
@@ -241,3 +249,155 @@ h2 {
         width: 100%;
     }
 }
+
+
+/* Admin Page Styling */
+.admin-container {
+    background: var(--secondary-dark);
+    padding: 20px;
+    border-radius: 10px;
+
+    width: 95%;
+    height: 95%;
+    overflow: scroll;
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form {
+    background: var(--primary-dark);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.admin-form h3 {
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+h2 {
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+
+.admin-form .login-input {
+    margin-bottom: 10px;
+    color: var(--primary-text);
+}
+
+.admin-form .login-btn {
+    background: var(--blue);
+    color: var(--primary-text);
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-form .login-btn:hover {
+    background: darken(var(--blue), 10%);
+}
+
+.users-table {
+
+    color: var(--primary-text); /* Use the primary text color from login page */
+    width: 100%;
+}
+
+.users-table th, .users-table td {
+    padding: 8px;
+    color: var(--primary-text); /* Text color for cells */
+}
+
+.users-table td{
+    color: var(--secondary-text);
+}
+
+.users-table th {
+    background-color: #151E40; /* Header background similar to cta-box on login page */
+}
+
+.users-table th:last-child, .users-table td:last-child {
+    border: none; /* Removes bottom border from the last row */
+}
+
+.users-table tr:nth-child(even) {background: #1B1A36;} /* Alternating row color */
+.users-table tr:nth-child(odd) {background: #1B1A36;} /* Alternating row color */
+
+
+.users-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+}
+.delete-user-btn{
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #6E87F7; /* Adjusted color */
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+/*Admin page*/
+/*.table-cont {*/
+/*    background: var(--primary-dark); !* Same as login box *!*/
+/*    border-radius: 20px;*/
+/*    padding: 20px;*/
+/*    height: 98%;*/
+/*    width: 98%;*/
+
+/*    color: #fff; !* Text color similar to login page *!*/
+/*}*/
+
+
+/*.users-table {*/
+
+/*    color: var(--primary-text); !* Use the primary text color from login page *!*/
+/*    width: 100%;*/
+/*}*/
+
+/*.users-table th, .users-table td {*/
+/*    padding: 8px;*/
+/*    color: var(--primary-text); !* Text color for cells *!*/
+/*}*/
+
+/*.users-table td{*/
+/*    color: var(--secondary-text);*/
+/*}*/
+
+/*.users-table th {*/
+/*    background-color: #151E40; !* Header background similar to cta-box on login page *!*/
+/*}*/
+
+/*.users-table th:last-child, .users-table td:last-child {*/
+/*    border: none; !* Removes bottom border from the last row *!*/
+/*}*/
+
+/*.users-table tr:nth-child(even) {background: #1B1A36;} !* Alternating row color *!*/
+/*.users-table tr:nth-child(odd) {background: #1B1A36;} !* Alternating row color *!*/
+
+
+/*.users-table th {*/
+/*    padding-top: 12px;*/
+/*    padding-bottom: 12px;*/
+/*    text-align: left;*/
+/*}*/
+/*.delete-user-btn{*/
+/*    height: 2.5rem;*/
+/*    width: 100%;*/
+/*    border-radius: 5px;*/
+/*    border: none;*/
+/*    background-color: #6E87F7; !* Adjusted color *!*/
+/*    color: #fff;*/
+/*    cursor: pointer;*/
+/*}*/
