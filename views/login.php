@@ -16,12 +16,19 @@
         <div class="login-box">
             <h2>Sign in to your <span class="blue-underline">Account</span></h2>
             <form class="login-form" action="" method="POST">
-                <input type="text" placeholder="Username" class="login-input" name="username">
-                <input type="password" placeholder="Password" class="login-input" name="password">
+                <input type="text" placeholder="Username" class="login-input" name="username" required>
+                <input type="password" placeholder="Password" class="login-input" name="password" required>
 
                 <div class="checkbox-container">
-                    <label><input type="checkbox" class="login-checkbox"> Remember me</label>
-                    <a href="#" class="link" class="login-link">Forgot Password?</a>
+                    <input type="radio" name="role" value="admin" id="admin" required>
+                    <label for="admin">Admin</label>
+
+                    <input type="radio" name="role" value="trainer" id="trainer" required>
+                    <label for="trainer">Trainer</label>
+
+                    <input type="radio" name="role" value="user" id="user" required>
+                    <label for="user">User</label>
+
                 </div>
                 <button type="submit" class="login-btn">Login</button>
             </form>

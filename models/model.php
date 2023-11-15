@@ -7,9 +7,18 @@ class Model{
         if(isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
             $username = $_REQUEST['username'];
             $password = $_REQUEST['password'];
-
+            $role = $_REQUEST['role'];
+            $ql = "";
             // Prepare a SQL query to check the username and password
-            $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+            if($role == 'admin'){
+                $sql = "SELECT * FROM admins WHERE username = '$username' AND password = '$password'";
+            }else if($role == 'trainer'){
+                $sql = "SELECT * FROM trainers WHERE username = '$username' AND password = '$password'";
+            }else if($role == 'user'){
+                $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+            }else{
+                return('invalid');
+            }
 
             // Execute the query
             $result = $conn->query($sql);
@@ -18,7 +27,6 @@ class Model{
                 // set user credentials
                 $row = $result->fetch_assoc();
                 $user_id = $row['userid'];
-                $role = $row['role'];
                 // Put user credentials in session variables
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['usertype'] = $role;

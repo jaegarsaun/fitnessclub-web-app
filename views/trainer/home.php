@@ -14,6 +14,9 @@ session_start();
 </head>
 <body>
 <div class="centered-body">
+    <div class="container">
+
+    </div>
 </div>
 
 <script>

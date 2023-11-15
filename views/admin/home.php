@@ -4,15 +4,21 @@ $conn = require $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
 // TODO: Check if session variables are set or not
 
+// Fetch all data from the "trainer" table
+$sql = "SELECT * FROM trainers";
+$trainerResult = $conn->query($sql);
+
 // Fetch all data from the "users" table
 $sql = "SELECT * FROM users";
-$result = $conn->query($sql);
-
+$userResult = $conn->query($sql);
 
 // Close the database connection
 $conn->close();
 
 // TODO: Add signout button
+// TODO: Add field so admin can add an assigned trainer to the user and only if its a user.
+// TODO: Throw an error if the role is admin or trainer and there is an assigned trainer
+// TODO: handle assigned trainer in /server/addUser.php
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +31,7 @@ $conn->close();
 </head>
 <body>
 <div class="centered-body">
-    <div class="admin-container">
+    <div class="container">
         <h2 class="blue-underline">Admin Dashboard</h2>
 
         <!-- Add Member Form -->
@@ -44,10 +50,9 @@ $conn->close();
         </form>
 
 
-        <!-- Users Table -->
-
+        <!-- Trainers Table -->
         <?php
-        if ($result && $result->num_rows > 0) {
+        if ($trainerResult && $trainerResult->num_rows > 0) {
             echo "<table class='users-table'>";
             echo "<tr class='table-row'>
         <th class='table-head'>User ID</th>
@@ -58,21 +63,57 @@ $conn->close();
         <th class='table-head'>Controls</th>
     </tr>";
 
-            while ($row = $result->fetch_assoc()) {
-                // Skip the row if the user's role is 'admin'
-                if ($row["role"] === 'admin') {
-                    continue;
-                }
+            while ($row = $trainerResult->fetch_assoc()) {
+
+                echo "<tr data-userid='" . htmlspecialchars($row["trainerid"]) . "'>
+        <td>" . htmlspecialchars($row["trainerid"]) . "</td>
+        <td>" . htmlspecialchars($row["name"]) . "</td>
+        <td>" . htmlspecialchars($row["username"]) . "</td>
+        <td>" . htmlspecialchars($row["password"]) . "</td>
+        <td>" . "Trainer" . "</td>
+        <td>
+            <form action='/server/deleteUser.php' method='post' class='delete-user-form'>
+                <input type='hidden' name='userid' value='" . $row["userid"] . "'>
+                <input type='hidden' name='role' value='trainer'>
+                <input type='submit' value='Delete user' class='delete-user-btn'>
+            </form>
+        </td>
+      </tr>";
+            }
+
+            echo "</table>";
+        } else {
+            echo "No records found in the users table.";
+        }
+        ?>
+
+        <!-- Users Table -->
+        <?php
+        if ($userResult && $userResult->num_rows > 0) {
+            echo "<table class='users-table'>";
+            echo "<tr class='table-row'>
+        <th class='table-head'>User ID</th>
+        <th class='table-head'>Name</th>
+        <th class='table-head'>Username</th>
+        <th class='table-head'>Password</th>
+        <th class='table-head'>Role</th>
+        <th class='table-head'>Assigned Trainer ID</th>
+        <th class='table-head'>Controls</th>
+    </tr>";
+
+            while ($row = $userResult->fetch_assoc()) {
 
                 echo "<tr data-userid='" . htmlspecialchars($row["userid"]) . "'>
         <td>" . htmlspecialchars($row["userid"]) . "</td>
         <td>" . htmlspecialchars($row["name"]) . "</td>
         <td>" . htmlspecialchars($row["username"]) . "</td>
         <td>" . htmlspecialchars($row["password"]) . "</td>
-        <td>" . htmlspecialchars($row["role"]) . "</td>
+        <td>" . "Member" . "</td>
+        <td>" . htmlspecialchars($row["assigned_trainer_id"]) . "</td>
         <td>
             <form action='/server/deleteUser.php' method='post' class='delete-user-form'>
                 <input type='hidden' name='userid' value='" . $row["userid"] . "'>
+                <input type='hidden' name='role' value='user'>
                 <input type='submit' value='Delete user' class='delete-user-btn'>
             </form>
         </td>
@@ -177,55 +218,3 @@ $conn->close();
 </script>
 </body>
 </html>
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Fitness Club</title>-->
-<!--    <link rel="stylesheet" href="../styles/style.css?v=--><?php //echo time(); ?><!--">-->
-<!--</head>-->
-<!--<body class="centered-body">-->
-<!--<div class="table-cont">-->
-<!--    <h2 class="blue-underline">Users in database</h2>-->
-<!--    --><?php
-//    if ($result && $result->num_rows > 0) {
-//        echo "<table class='users-table'>";
-//        echo "<tr class='table-row'>
-//            <th class='table-head'>User ID</th>
-//            <th class='table-head'>Name</th>
-//            <th class='table-head'>Username</th>
-//            <th class='table-head'>Password</th>
-//            <th class='table-head'>Role</th>
-//            <th class='table-head'>Controls</th>
-//        </tr>";
-//
-//        while ($row = $result->fetch_assoc()) {
-//            echo "<tr>
-//            <td>" . htmlspecialchars($row["userid"]) . "</td>
-//            <td>" . htmlspecialchars($row["name"]) . "</td>
-//            <td>" . htmlspecialchars($row["username"]) . "</td>
-//            <td>" . htmlspecialchars($row["password"]) . "</td>
-//            <td>" . htmlspecialchars($row["role"]) . "</td>
-//            <td>
-//                <form action='/server/deleteUser.php' method='post'>
-//                    <input type='hidden' name='userid' value='" . htmlspecialchars($row["userid"]) . "'>
-//                    <input type='submit' value='Delete user' class='delete-user-btn'>
-//                </form>
-//            </td>
-//          </tr>";
-//        }
-//
-//        echo "</table>";
-//    } else {
-//        echo "No records found in the users table.";
-//    }
-//    ?>
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->

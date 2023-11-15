@@ -252,7 +252,7 @@ h2 {
 
 
 /* Admin Page Styling */
-.admin-container {
+.container {
     background: var(--secondary-dark);
     padding: 20px;
     border-radius: 10px;
@@ -263,7 +263,7 @@ h2 {
     margin: 20px auto;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-.admin-container h2{
+.container h2{
     color: var(--primary-text);
 }
 .admin-form {
