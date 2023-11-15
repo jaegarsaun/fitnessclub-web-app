@@ -4,9 +4,18 @@ $conn = require $_SERVER['DOCUMENT_ROOT'] . '/config.php'; // require conn
 if($_SERVER['REQUEST_METHOD'] == "POST"){ // request from the server
     // get userid from request
     $userid = $_POST['userid'];
+    $role = $_POST['role'];
+
 
     // prepare sql
-    $sql = "DELETE FROM users WHERE userid = CAST('$userid' AS SIGNED);";
+    $sql = '';
+    if($role == 'trainer'){
+        $sql = "DELETE FROM trainers WHERE trainerid = CAST('$userid' AS SIGNED);";
+    }
+
+    if($role == 'user'){
+        $sql = "DELETE FROM users WHERE userid = CAST('$userid' AS SIGNED);";
+    }
 
     // run sql
     $result = $conn->query($sql);

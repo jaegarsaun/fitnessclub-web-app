@@ -73,7 +73,7 @@ $conn->close();
         <td>" . "Trainer" . "</td>
         <td>
             <form action='/server/deleteUser.php' method='post' class='delete-user-form'>
-                <input type='hidden' name='userid' value='" . $row["userid"] . "'>
+                <input type='hidden' name='userid' value='" . $row["trainerid"] . "'>
                 <input type='hidden' name='role' value='trainer'>
                 <input type='submit' value='Delete user' class='delete-user-btn'>
             </form>

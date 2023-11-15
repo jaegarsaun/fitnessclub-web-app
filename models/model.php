@@ -26,7 +26,14 @@ class Model{
             if ($result->num_rows > 0) { // Successful login
                 // set user credentials
                 $row = $result->fetch_assoc();
-                $user_id = $row['userid'];
+                $user_id = '';
+                if($role == 'user'){
+                    $user_id = $row['userid'];
+                }else if($role == 'trainer'){
+                    $user_id = $row['trainerid'];
+                }else if($role == 'admin'){
+                    $user_id = $row['adminid'];
+                }
                 // Put user credentials in session variables
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['usertype'] = $role;
