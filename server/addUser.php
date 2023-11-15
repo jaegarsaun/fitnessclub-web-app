@@ -8,10 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") { // request from the server
     $name = $_POST['name'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $assignedTrainerId = $_POST['assignedTrainerId'];
     $role = $_POST['role'];
 
     // prepare sql
-    $sql = "INSERT INTO users (name, username, password, role) VALUES ('$name', '$username', '$password', '$role')";
+    $sql = '';
+    if($role == 'admin'){
+        $sql = "INSERT INTO admins (name, username, password) VALUES ('$name', '$username', '$password')";
+    }else if($role == 'trainer'){
+        $sql = "INSERT INTO trainers (name, username, password) VALUES ('$name', '$username', '$password')";
+    }else if($role == 'user'){
+        $sql = "INSERT INTO users (name, username, password, assigned_trainer_id) VALUES ('$name', '$username', '$password', CAST('$assignedTrainerId' AS SIGNED))";
+    }
 
     // run sql
     $result = $conn->query($sql);

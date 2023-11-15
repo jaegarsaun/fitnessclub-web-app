@@ -40,7 +40,8 @@ $conn->close();
             <input type="text" name="name" placeholder="Name" required class="login-input">
             <input type="text" name="username" placeholder="Username" required class="login-input">
             <input type="password" name="password" placeholder="Password" required class="login-input">
-            <select name="role">
+            <input type="number" id="assignedTrainerId" name="assignedTrainerId" placeholder="Assigned Trainer ID (Only required for users)" class="login-input">
+            <select name="role" id="usertype">
                 <option value="admin">Admin</option>
                 <option value="trainer">Trainer</option>
                 <option value="user">User</option>
@@ -55,7 +56,7 @@ $conn->close();
         if ($trainerResult && $trainerResult->num_rows > 0) {
             echo "<table class='users-table'>";
             echo "<tr class='table-row'>
-        <th class='table-head'>User ID</th>
+        <th class='table-head'>Trainer ID</th>
         <th class='table-head'>Name</th>
         <th class='table-head'>Username</th>
         <th class='table-head'>Password</th>
@@ -86,7 +87,6 @@ $conn->close();
             echo "No records found in the users table.";
         }
         ?>
-
         <!-- Users Table -->
         <?php
         if ($userResult && $userResult->num_rows > 0) {
@@ -172,6 +172,10 @@ $conn->close();
         });
     });
 
+    var usertype;
+    document.getElementById('usertype').addEventListener('change', function() {
+        usertype = this.value;
+    });
 
     // Adding users
     document.querySelectorAll('.admin-form').forEach(function (form) {
@@ -179,35 +183,43 @@ $conn->close();
             e.preventDefault();
 
             var formData = new FormData(form);
+            var trainerid = document.getElementById('assignedTrainerId').value
+            if(trainerid === "" && usertype === "user"){
+                // alert the admin of the error
+                alert('If you are adding a user to the system, you must assign a trainer to that user.')
 
-            fetch('http://localhost:63342/inet2005-finalproject-jaegarsaun/server/addUser.php', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => {
-                    if (response.status === 400) {
-                        alert('Bad request, try again');
-                        return;
-                    }
-
-                    if (response.status === 500) {
-                        alert('An internal server error occurred.');
-                        return;
-                    }
-
-                    if (!response.ok) {
-                        throw new Error('HTTP status ' + response.status);
-                    }
-
-                    return response.text();
+            }else{
+                fetch('http://localhost:63342/inet2005-finalproject-jaegarsaun/server/addUser.php', {
+                    method: 'POST',
+                    body: formData
                 })
-                .then(data => {
-                    alert('Success')
-                    location.reload();
-                })
-                .catch(error => {
-                    alert('An error occurred: ' + error.message);
-                });
+                    .then(response => {
+                        if (response.status === 400) {
+                            alert('Bad request, try again');
+                            return;
+                        }
+
+                        if (response.status === 500) {
+                            alert('An internal server error occurred.');
+                            return;
+                        }
+
+                        if (!response.ok) {
+                            throw new Error('HTTP status ' + response.status);
+                        }
+
+                        return response.text();
+                    })
+                    .then(data => {
+                        alert('Success')
+                        location.reload();
+                    })
+                    .catch(error => {
+                        alert('An error occurred: ' + error.message);
+                    });
+            }
+
+
         });
     });
 
