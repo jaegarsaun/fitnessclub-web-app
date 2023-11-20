@@ -1,5 +1,7 @@
 <?php
+session_start();
 class Model{
+
 
     public function getlogin(){
         $conn = require $_SERVER['DOCUMENT_ROOT'] . '/config.php';
@@ -8,7 +10,7 @@ class Model{
             $username = $_REQUEST['username'];
             $password = $_REQUEST['password'];
             $role = $_REQUEST['role'];
-            $ql = "";
+            $sql = '';
             // Prepare a SQL query to check the username and password
             if($role == 'admin'){
                 $sql = "SELECT * FROM admins WHERE username = '$username' AND password = '$password'";

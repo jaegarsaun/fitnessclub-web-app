@@ -16,9 +16,6 @@ $userResult = $conn->query($sql);
 $conn->close();
 
 // TODO: Add signout button
-// TODO: Add field so admin can add an assigned trainer to the user and only if its a user.
-// TODO: Throw an error if the role is admin or trainer and there is an assigned trainer
-// TODO: handle assigned trainer in /server/addUser.php
 ?>
 
 <!DOCTYPE html>
@@ -52,10 +49,12 @@ $conn->close();
 
 
         <!-- Trainers Table -->
-        <?php
-        if ($trainerResult && $trainerResult->num_rows > 0) {
-            echo "<table class='users-table'>";
-            echo "<tr class='table-row'>
+        <div class="table-cont">
+            <h3>Registered Trainers</h3>
+            <?php
+            if ($trainerResult && $trainerResult->num_rows > 0) {
+                echo "<table class='users-table'>";
+                echo "<tr class='table-row'>
         <th class='table-head'>Trainer ID</th>
         <th class='table-head'>Name</th>
         <th class='table-head'>Username</th>
@@ -64,9 +63,9 @@ $conn->close();
         <th class='table-head'>Controls</th>
     </tr>";
 
-            while ($row = $trainerResult->fetch_assoc()) {
+                while ($row = $trainerResult->fetch_assoc()) {
 
-                echo "<tr data-userid='" . htmlspecialchars($row["trainerid"]) . "'>
+                    echo "<tr data-userid='" . htmlspecialchars($row["trainerid"]) . "'>
         <td>" . htmlspecialchars($row["trainerid"]) . "</td>
         <td>" . htmlspecialchars($row["name"]) . "</td>
         <td>" . htmlspecialchars($row["username"]) . "</td>
@@ -80,18 +79,22 @@ $conn->close();
             </form>
         </td>
       </tr>";
-            }
+                }
 
-            echo "</table>";
-        } else {
-            echo "No records found in the users table.";
-        }
-        ?>
+                echo "</table>";
+            } else {
+                echo "No records found in the users table.";
+            }
+            ?>
+        </div>
         <!-- Users Table -->
-        <?php
-        if ($userResult && $userResult->num_rows > 0) {
-            echo "<table class='users-table'>";
-            echo "<tr class='table-row'>
+
+        <div class="table-cont">
+            <h3>Registered Users</h3>
+            <?php
+            if ($userResult && $userResult->num_rows > 0) {
+                echo "<table class='users-table'>";
+                echo "<tr class='table-row'>
         <th class='table-head'>User ID</th>
         <th class='table-head'>Name</th>
         <th class='table-head'>Username</th>
@@ -101,9 +104,9 @@ $conn->close();
         <th class='table-head'>Controls</th>
     </tr>";
 
-            while ($row = $userResult->fetch_assoc()) {
+                while ($row = $userResult->fetch_assoc()) {
 
-                echo "<tr data-userid='" . htmlspecialchars($row["userid"]) . "'>
+                    echo "<tr data-userid='" . htmlspecialchars($row["userid"]) . "'>
         <td>" . htmlspecialchars($row["userid"]) . "</td>
         <td>" . htmlspecialchars($row["name"]) . "</td>
         <td>" . htmlspecialchars($row["username"]) . "</td>
@@ -118,13 +121,14 @@ $conn->close();
             </form>
         </td>
       </tr>";
-            }
+                }
 
-            echo "</table>";
-        } else {
-            echo "No records found in the users table.";
-        }
-        ?>
+                echo "</table>";
+            } else {
+                echo "No records found in the users table.";
+            }
+            ?>
+        </div>
 
 
     </div>
