@@ -107,9 +107,10 @@ $conn->close();
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <form action="/server/addMember.php" method="post" class="admin-form">
+        <form action="/server/assignUserSchedule.php" method="post" class="admin-form" id="modal-form">
             <h3>Edit Timeslot</h3>
             <input type='hidden' name='scheduleid' id="scheduleid" value="">
+            <input type='hidden' name='trainerid' id="trainerid" value="<?php echo $trainerid ?> ">
             <input type="text" name="userid" id="userid" placeholder="Member ID (Leave Blank if timeslot is not Booked or Member Cancled)" class="login-input">
             <select name="status" id="status" required>
                 <option value="booked">Booked</option>
@@ -123,5 +124,58 @@ $conn->close();
 </div>
 
 <script src="/js/modal.js"></script>
+<script>
+    const form = document.getElementById('modal-form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        var userid = document.getElementById('userid').value;
+        var status = document.getElementById('status').value;
+
+        if(status === 'booked' && userid === ''){
+            alert('Booked sessions must have a user')
+        }else if (status === 'notbooked' && userid){
+            alert('Unbooked sessions may not have a user')
+        }else {
+            var formData = new FormData(form);
+            fetch('http://localhost:63342/inet2005-finalproject-jaegarsaun/server/assignUserSchedule.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.status === 400 || response.status === 404) {
+                        alert('No user found with the given userid.');
+                        return;
+                    }
+
+                    if (response.status === 500) {
+                        alert('An internal server error occurred.');
+                        return;
+                    }
+
+                    if (!response.ok) {
+                        throw new Error('HTTP status ' + response.status);
+                    }
+
+                    return response.text();
+                })
+                .then(() => {
+                    location.reload();
+                })
+                .catch(error => {
+                    alert('An error occurred: ' + error.message);
+                });
+        }
+
+
+    })
+
+
+
+
+
+
+
+</script>
 </body>
 </html>
